@@ -6,19 +6,17 @@ import io.github.startship.game.models.MissileModel;
 import io.github.startship.game.models.StarshipModel;
 
 public class StarshipController {
+    private final float STARSHIP_SPEED = 15;
+    private final float MISSILE_SPEED = 30;
 
-    private final String STARSHIP_IMAGE = "ship.png";
-    private final String MISSILE_IMAGE = "missile.png";
-    private final float STARSHIP_START_POSITION_XY = 0;
     private final StarshipModel starshipModel;
     private final MissileModel missileModel;
-    private boolean sendMissile, gameOver;
+    private boolean sendMissile;
 
     public StarshipController() {
-        this.starshipModel = new StarshipModel(STARSHIP_START_POSITION_XY, STARSHIP_START_POSITION_XY, STARSHIP_IMAGE);
-        this.missileModel = new MissileModel(STARSHIP_START_POSITION_XY, STARSHIP_START_POSITION_XY, MISSILE_IMAGE);
+        this.starshipModel = new StarshipModel();
+        this.missileModel = new MissileModel();
         this.sendMissile = false;
-        this.gameOver = false;
     }
 
     public StarshipModel getStarshipModel() {
@@ -37,21 +35,8 @@ public class StarshipController {
         this.sendMissile = false;
     }
 
-    public boolean isGameOver() {
-        return gameOver;
-    }
+    public void moveShip() {
 
-    public void setGameOver(boolean gameOver) {
-        this.gameOver = gameOver;
-    }
-
-    public void runGame() {
-        this.moveShip();
-        this.moveMissile();
-    }
-
-    private void moveShip() {
-        float STARSHIP_SPEED = 15;
         if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
             if (this.starshipModel.getPositionX() < Gdx.graphics.getWidth() - this.starshipModel.getWidth()) {
                 this.starshipModel.setPositionX(this.starshipModel.getPositionX() + STARSHIP_SPEED);
@@ -77,7 +62,7 @@ public class StarshipController {
         }
     }
 
-    private void moveMissile() {
+    public void moveMissile() {
 
         if (Gdx.input.isKeyPressed(Input.Keys.SPACE) && !this.sendingMissile()) {
             this.sendMissile = true;
@@ -86,7 +71,6 @@ public class StarshipController {
 
         if (sendMissile) {
             if (this.missileModel.getPositionX() < Gdx.graphics.getWidth()) {
-                float MISSILE_SPEED = 30;
                 this.missileModel.setPositionX(this.missileModel.getPositionX() + MISSILE_SPEED);
             } else {
                 this.missileModel.setPositionX(this.starshipModel.getPositionX());

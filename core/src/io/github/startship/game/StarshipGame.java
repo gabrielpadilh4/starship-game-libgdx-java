@@ -10,8 +10,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.ScreenUtils;
-import io.github.startship.game.controllers.EnemyController;
-import io.github.startship.game.controllers.StarshipController;
+import io.github.startship.game.controllers.GameController;
 
 public class StarshipGame extends ApplicationAdapter {
     private SpriteBatch batch;
@@ -19,55 +18,53 @@ public class StarshipGame extends ApplicationAdapter {
     private FreeTypeFontGenerator generator;
     private FreeTypeFontGenerator.FreeTypeFontParameter parameter;
     private BitmapFont bitmapFont;
-    private StarshipController shipController;
-    private EnemyController enemyController;
+
+    private GameController gameController;
 
     @Override
     public void create() {
-        batch = new SpriteBatch();
-        backgroundImage = new Texture("bg.png");
-        shipController = new StarshipController();
-        enemyController = new EnemyController();
-        generator = new FreeTypeFontGenerator(Gdx.files.internal("font.ttf"));
-        parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
-        parameter.size = 30;
-        parameter.borderWidth = 1;
-        parameter.borderColor = Color.BLUE;
-        parameter.color = Color.WHITE;
-        bitmapFont = generator.generateFont(parameter);
+        this.batch = new SpriteBatch();
+        this.backgroundImage = new Texture("bg.png");
+        this.generator = new FreeTypeFontGenerator(Gdx.files.internal("font.ttf"));
+        this.parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+        this.parameter.size = 30;
+        this.parameter.borderWidth = 1;
+        this.parameter.borderColor = Color.BLUE;
+        this.parameter.color = Color.WHITE;
+        this.bitmapFont = this.generator.generateFont(this.parameter);
+        this.gameController = new GameController();
     }
 
     @Override
     public void render() {
-        shipController.runGame();
-        enemyController.moveEnemies(this.shipController);
+
+        gameController.startGame();
 
         ScreenUtils.clear(1, 0, 0, 1);
         batch.begin();
         batch.draw(backgroundImage, 0, 0);
 
-        if (!this.shipController.isGameOver()) {
+        if (!this.gameController.isGameOver()) {
 
-            if (this.shipController.sendingMissile()) {
-                float missilePositionX = shipController.getMissileModel().getPositionX() + shipController.getStarshipModel().getWidth() / 2;
-                float missilePositionY = shipController.getMissileModel().getPositionY() + shipController.getStarshipModel().getHeight() / 2 - 30;
-                batch.draw(shipController.getMissileModel().getModelTexture(), missilePositionX, missilePositionY);
+            if (this.gameController.getShipController().sendingMissile()) {
+                float missilePositionX = this.gameController.getShipController().getMissileModel().getPositionX() + this.gameController.getShipController().getStarshipModel().getWidth() / 2;
+                float missilePositionY = this.gameController.getShipController().getMissileModel().getPositionY() + this.gameController.getShipController().getStarshipModel().getHeight() / 2 - 30;
+                batch.draw(this.gameController.getShipController().getMissileModel().getModelTexture(), missilePositionX, missilePositionY);
             }
 
-            for (Rectangle enemy : this.enemyController.getEnemies()) {
-                batch.draw(this.enemyController.getEnemyTexture(), enemy.x, enemy.y);
+            for (Rectangle enemy : this.gameController.getEnemyController().getEnemies()) {
+                batch.draw(this.gameController.getEnemyController().getEnemyTexture(), enemy.x, enemy.y);
             }
 
-            batch.draw(shipController.getStarshipModel().getModelSprite(), shipController.getStarshipModel().getPositionX(), shipController.getStarshipModel().getPositionY());
-            bitmapFont.draw(batch, "Score: " + this.enemyController.getEnemyScore(), 20, Gdx.graphics.getHeight() - 20);
-            bitmapFont.draw(batch, "Life: " + this.shipController.getStarshipModel().getLife(), Gdx.graphics.getWidth() - 250, Gdx.graphics.getHeight() - 20);
+            batch.draw(this.gameController.getShipController().getStarshipModel().getModelSprite(), this.gameController.getShipController().getStarshipModel().getPositionX(), this.gameController.getShipController().getStarshipModel().getPositionY());
+            bitmapFont.draw(batch, "Score: " + this.gameController.getScore(), 20, Gdx.graphics.getHeight() - 20);
+            bitmapFont.draw(batch, "Life: " + this.gameController.getLife(), Gdx.graphics.getWidth() - 250, Gdx.graphics.getHeight() - 20);
         } else {
-            bitmapFont.draw(batch, "Score: " + this.enemyController.getEnemyScore(), 20, Gdx.graphics.getHeight() - 20);
+            bitmapFont.draw(batch, "Score: " + this.gameController.getScore(), 20, Gdx.graphics.getHeight() - 20);
             bitmapFont.draw(batch, "GAME OVER", Gdx.graphics.getWidth() - 300, Gdx.graphics.getHeight() - 20);
 
             if (Gdx.input.isKeyPressed(Input.Keys.ENTER)) {
-                this.shipController = new StarshipController();
-                this.enemyController = new EnemyController();
+                this.gameController.restartGame();
             }
         }
 
@@ -78,7 +75,7 @@ public class StarshipGame extends ApplicationAdapter {
     public void dispose() {
         batch.dispose();
         backgroundImage.dispose();
-        shipController.getStarshipModel().getModelTexture().dispose();
-        shipController.getMissileModel().getModelTexture().dispose();
+        this.gameController.getShipController().getStarshipModel().getModelTexture().dispose();
+        this.gameController.getShipController().getMissileModel().getModelTexture().dispose();
     }
 }

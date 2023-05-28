@@ -1,8 +1,9 @@
 package io.github.startship.game.models;
 
-public class MissileModel extends BaseModel {
+import com.badlogic.gdx.Gdx;
 
-    public MissileModel(float positionX, float positionY, String missileImage) {
-        super(positionX, positionY, missileImage);
+public class MissileModel extends BaseModel {
+    public MissileModel() {
+        super(0, (float) Gdx.graphics.getWidth() / 2 - 30, "missile.png");
     }
 }

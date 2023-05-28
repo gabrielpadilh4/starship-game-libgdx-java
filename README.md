@@ -2,7 +2,7 @@
 
 This is a small project of a 2D game using LibGDX.
 
-Use directional keys <kbd>↑</kbd> <kbd>↓</kbd> <kbd>→</kbd> <kbd>←</kbd> to move the ship.
+Use directional keys <kbd>↑</kbd> <kbd>↓</kbd> <kbd>→</kbd> <kbd>←</kbd> to move the ship and <kbd>SPACE</kbd> to send missiles.
 
 At game over, press <kbd>ENTER</kbd> to restart the game.
 

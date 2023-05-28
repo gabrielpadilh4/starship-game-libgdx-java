@@ -7,7 +7,6 @@ public class BaseModel {
     float positionX;
     float positionY;
     float width;
-
     float height;
     Texture modelTexture;
     Sprite modelSprite;
@@ -60,15 +59,7 @@ public class BaseModel {
         return modelTexture;
     }
 
-    public void setModelTexture(Texture modelTexture) {
-        this.modelTexture = modelTexture;
-    }
-
     public Sprite getModelSprite() {
         return modelSprite;
-    }
-
-    public void setModelSprite(Sprite modelSprite) {
-        this.modelSprite = modelSprite;
     }
 }

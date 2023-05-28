@@ -1,19 +1,9 @@
 package io.github.startship.game.models;
 
+import com.badlogic.gdx.Gdx;
+
 public class StarshipModel extends BaseModel {
-
-    private int life;
-
-    public StarshipModel(float positionX, float positionY, String shipImage) {
-        super(positionX, positionY, shipImage);
-        this.life = 3;
-    }
-
-    public int getLife() {
-        return life;
-    }
-
-    public void setLife(int life) {
-        this.life = life;
+    public StarshipModel() {
+        super(0, (float) Gdx.graphics.getHeight() / 2, "ship.png");
     }
 }
