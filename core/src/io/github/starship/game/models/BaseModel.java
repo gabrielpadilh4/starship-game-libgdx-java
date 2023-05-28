@@ -1,4 +1,4 @@
-package io.github.startship.game.models;
+package io.github.starship.game.models;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;

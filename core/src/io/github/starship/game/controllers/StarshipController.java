@@ -1,9 +1,9 @@
-package io.github.startship.game.controllers;
+package io.github.starship.game.controllers;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import io.github.startship.game.models.MissileModel;
-import io.github.startship.game.models.StarshipModel;
+import io.github.starship.game.models.MissileModel;
+import io.github.starship.game.models.StarshipModel;
 
 public class StarshipController {
     private final float STARSHIP_SPEED = 15;

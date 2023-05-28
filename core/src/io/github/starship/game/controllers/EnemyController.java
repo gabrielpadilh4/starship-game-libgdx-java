@@ -1,4 +1,4 @@
-package io.github.startship.game.controllers;
+package io.github.starship.game.controllers;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;

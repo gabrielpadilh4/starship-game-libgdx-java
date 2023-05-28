@@ -1,4 +1,4 @@
-package io.github.startship.game.models;
+package io.github.starship.game.models;
 
 import com.badlogic.gdx.Gdx;
 

@@ -1,4 +1,4 @@
-package io.github.startship.game;
+package io.github.starship.game;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
@@ -10,7 +10,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.ScreenUtils;
-import io.github.startship.game.controllers.GameController;
+import io.github.starship.game.controllers.GameController;
 
 public class StarshipGame extends ApplicationAdapter {
     private SpriteBatch batch;

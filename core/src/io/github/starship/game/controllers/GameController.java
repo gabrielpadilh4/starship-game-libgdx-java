@@ -1,9 +1,9 @@
-package io.github.startship.game.controllers;
+package io.github.starship.game.controllers;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Rectangle;
-import io.github.startship.game.models.BaseModel;
-import io.github.startship.game.util.Util;
+import io.github.starship.game.models.BaseModel;
+import io.github.starship.game.util.Util;
 
 import java.util.Iterator;
 

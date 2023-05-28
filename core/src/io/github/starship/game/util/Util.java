@@ -1,6 +1,6 @@
-package io.github.startship.game.util;
+package io.github.starship.game.util;
 
-import io.github.startship.game.models.BaseModel;
+import io.github.starship.game.models.BaseModel;
 
 public class Util {
     public static boolean calculateCollision(BaseModel coordinatesA, BaseModel coordinatesB) {
